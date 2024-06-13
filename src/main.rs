@@ -1,4 +1,4 @@
-use std::{io::{self, Stdin}, string};
+use std::{collections::btree_map::Values, io::{self, Stdin}, string};
 
 fn main() {
     println!("How was your day");
@@ -108,6 +108,115 @@ fn string_owned(){
         println!("{}", string);
     }
 }
+#[test]
+fn ownership(){
+    let name1: String = String::from("Pras");   //store a heap value
+    println!("{}",name1);
+    let name2 = name1; //ownership change, name1 no longer exist
+    let name3 = name2.clone(); //clone the value, each value has individual owner
+
+    printstr(name2, name3);
+    fn printstr(string1:String, string2:String){
+        println!("{},{}", string1,string2);
+    }
+}
+
+#[test]
+fn if_else_expression(){
+    let score = 15;
+    let result: &str;
+
+    //if expression mengembalikan nilai
+    //value dari if expression bisa disimpan di variable
+    if score < 10 {
+        result = "Bad";
+        println!("{}",result);
+    } else if score == 10 {
+        result = "Good";
+        println!("{}",result);
+    } else {
+        result = "Excellent";
+        println!("{}",result);
+    }
+
+    let hari_ini = if result == "Bad"{
+        "Sad"
+    } else if result == "Good"{
+        "Happy"
+    } else if result == "Excellent"{
+        "Wonderful"
+    } else {
+        "IDK"
+    };
+
+    println!("{}", hari_ini);
+}
+
+#[test]
+fn loop_expression(){
+    let mut counter = 0;
+
+    loop {
+        counter += 1;
 
 
+        if counter == 10 {
+            break;
+        } else if counter % 2 == 0 {
+            continue;
+        }
+
+        println!("counter: {}",counter);
+    }
+}
+
+#[test]
+fn while_loop(){
+    let mut counter = 0;
+
+    while counter <= 10 {
+        if counter % 2 == 0 {
+            println!("counter: {}", counter);
+        }
+
+        counter += 1;
+    }
+}
+
+#[test]
+fn array_iteration() {
+    let array: [&str; 5] = ["a","b","c","d","e"];
+    let mut index = 0;
+
+    while index < array.len() {
+        print!("{}",array[index]);
+
+        index += 1;
+    }
+
+    for value in array {
+        println!("{}", value);
+    }
+
+    //collection: range variable
+    let range1 = 0..5; //start inclusive, end exclusive
+    print!("start: {}\n",range1.start);
+    print!("end: {}\n",range1.end);
+
+    for i in range1{
+        println!("range: {}",i);
+        println!("array-ke {}:{}",i,array[i]);
+    }
+
+    //range inclusive
+    let range2 = 0..=5;
+    print!("start: {}\n",range2.start());
+    print!("end: {}\n",range2.end());
+
+    for i in range2{
+        println!("range_in: {}",i);
+        // println!("array-ke_in {}:{}",i,array[i]);
+    }
+
+}
 
