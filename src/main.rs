@@ -1,6 +1,8 @@
 use std::{collections::btree_map::Values, io::{self, Stdin}, string};
 
 fn main() {
+    //cargo run, cargo build, cargo build --release
+
     println!("How was your day");
     println!("Please input your feeling");
     let mut feel = String::new();
